@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+img {
+  display: inline-block;
+}
+
+*, *:before, *:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  word-break: break-all;
+}
+
+body {
+  height: 100vh;
+  font-size: 16px;
+}
+
+#app {
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+// 图片预览相关隐藏不需要的组件
+.PhotoSlider__Counter {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.PhotoSlider__BannerWrap {
+  right: 0 !important;
+  left: unset !important;
+  display: inline-block !important;
+  width: 44px !important;
+}
+
+.PhotoSlider__BannerWrap svg:not(:last-child) {
+  display: none;
+}
+
+.PhotoSlider__FooterWrap {
+  display: none;
+}
+
+.PhotoSlider__Counter {
+  display: none;
+}
+
+.common-btn {
+  border-radius: 0.22rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.16rem;
+  color: black;
+  width: 0.72rem;
+  height: 0.32rem;
+  background-color: #28C9DA;
+}
+
+/*文章内通用按钮基本样式*/
+.article-basic-btn {
+  color: #DDDFDE;
+  background: rgba(170, 170, 170, .2);
+  border-radius: 16px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 14px;
+}
+
+/*文章内通用超链接基本样式*/
+.article-basic-hyperlink {
+  color: #28C9DA;
+  text-decoration: underline;
+}
+
+video {
+  max-width: 100%;
+}
+
+/*覆盖antd-vue modal默认样式*/
+.ant-modal .ant-modal-content {
+  border: 1px solid #575454;
+
+  .ant-modal-confirm-title, .ant-modal-confirm-content {
+    color: white;
+  }
+}
+
+.ant-modal-confirm-btns {
+  button {
+    color: white;
+    background: none;
+    border: 1px solid #575454;
+  }
+
+  .ant-btn-primary:not(:disabled):hover, .ant-btn-primary:not(:disabled):active {
+    background: none;
+    color: white;
+  }
+
+  .ant-btn-default:not(:disabled):hover {
+    color: white;
+    border-color: unset;
+  }
+}
