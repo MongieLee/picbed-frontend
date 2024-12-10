@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import {reactive, computed} from "vue";
+import {computed, reactive} from "vue";
 import Bg from "~/assets/bg.jpg"
-import {UserOutlined, LockOutlined} from '@ant-design/icons-vue';
+import {LockOutlined, UserOutlined} from '@ant-design/icons-vue';
 import LoginService from "~/services/loginService";
 import {useRouter} from "vue-router";
+import useUserStore from "../store/userStore.ts";
+import {message} from "ant-design-vue";
 
 const router = useRouter()
 
@@ -13,16 +15,30 @@ interface FormState {
   remember: boolean;
 }
 
+const userStore = useUserStore()
+
 const formState = reactive<FormState>({
   username: '',
   password: '',
   remember: true,
 });
 const onFinish = async (values: any) => {
-  console.log('Success:', values);
-  const res = await LoginService.login(values)
-  console.log(res)
-  router.push({name: "home"})
+  let res
+  try {
+
+
+    res = await LoginService.login(values)
+    if (res.code == 200) {
+      userStore.setUserToken(res.token)
+      userStore.setUserRefreshToken(res.refreshToken)
+      userStore.setUserInfo(res.userInfo)
+      router.push({name: "home"})
+    } else {
+      message.error(res.msg)
+    }
+  } catch (e) {
+    message.error(e as any)
+  }
 };
 
 const onFinishFailed = (errorInfo: any) => {

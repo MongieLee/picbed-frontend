@@ -13,43 +13,10 @@ request.interceptors.request.use((config) => {
   }
 )
 
-export const needBusinessCodeApiList = [
-  // 排行榜文章相关
-  "/gameleaderboardcommentlike",
-  "/gameleaderboardlike",
-  "/addgameleaderboardcomment",
-
-  // 游戏资讯文章相关
-  "/gamearticlecommentlike",
-  "/gamearticlelike",
-  "/addgamearticlecomment",
-
-  // 活动相关
-  "/startraffle",
-
-  // dcb相关
-  "/bbsarticlecommentlike",
-  "/addbbsarticlecomment",
-  "/bbsarticlelike",
-
-  // 领取礼包码
-  "/game/getgamearticlegitfcode",
-
-  // web登录
-  "/raffleweblogin",
-
-  // 领取vip补偿
-  "/user/usercompensateviptime",
-
-  // 获取验证码
-  "/sendrafflecode"
-];
+export const needBusinessCodeApiList = [];
 
 const requestRespInterceptor = (response: AxiosResponse) => {
-  if (needBusinessCodeApiList.some(i => response.config.url === i)) {
-    return response.data as BaseJsonResponse;
-  }
-  return response.data["result"];
+  return response.data;
 }
 
 request.interceptors.response.use(requestRespInterceptor)

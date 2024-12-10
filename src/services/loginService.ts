@@ -1,4 +1,5 @@
 import request from "~/services/request.ts";
+import {BaseJsonResponse} from "./request.ts";
 
 /**
  * 登录服务
@@ -13,7 +14,7 @@ class LoginService {
       url,
       method: "POST",
       data: data
-    }) as Promise;
+    }) as Promise<BaseJsonResponse>;
   }
 }
 
